@@ -18,13 +18,18 @@
         <button id="clickButton">Haz clic aquí</button>
         <p>Puntos: <span id="score">0</span></p>
         <p id="timer">Tiempo restante: 10s</p>
+        <button id="resetButton">Reiniciar</button>
     </div>
+
+    <marquee class="marquesina">🎉 Desarrollado por Marcial MV - Promo 92 🎉</marquee>
 
     <script>
         let score = 0;
         let timeLeft = 10;
         let gameActive = false;
+        let timer;
         const button = document.getElementById("clickButton");
+        const resetButton = document.getElementById("resetButton");
         const scoreDisplay = document.getElementById("score");
         const timerDisplay = document.getElementById("timer");
 
@@ -37,8 +42,12 @@
             scoreDisplay.textContent = score;
         });
 
+        resetButton.addEventListener("click", () => {
+            resetGame();
+        });
+
         function startGame() {
-            const timer = setInterval(() => {
+            timer = setInterval(() => {
                 timeLeft--;
                 timerDisplay.textContent = `Tiempo restante: ${timeLeft}s`;
                 if (timeLeft === 0) {
@@ -47,6 +56,16 @@
                     timerDisplay.textContent = "⏳ ¡Tiempo terminado!";
                 }
             }, 1000);
+        }
+
+        function resetGame() {
+            clearInterval(timer);
+            score = 0;
+            timeLeft = 10;
+            gameActive = false;
+            button.disabled = false;
+            scoreDisplay.textContent = score;
+            timerDisplay.textContent = "Tiempo restante: 10s";
         }
     </script>
 </body>
