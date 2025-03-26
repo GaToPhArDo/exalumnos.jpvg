@@ -8,26 +8,32 @@
 </head>
 <body>
     <div class="container">
-        <h1>Página en Construcción</h1>
-        <p>Estamos trabajando en el sitio. ¡Vuelve pronto!</p>
+        <h1>🚧 Página en Construcción 🚧</h1>
+        <p>Estamos trabajando para traerte algo increíble. ¡Vuelve pronto!</p>
         <p>Mientras tanto, puedes distraerte con este pequeño juego:</p>
     </div>
     <div class="game-container">
-        <h2>¡Haz clic en el botón antes de que desaparezca!</h2>
+        <h2>Haz clic en el cuadro para ganar puntos</h2>
         <div class="game-area">
-            <button class="button" onclick="moverBoton()">Haz clic aquí</button>
+            <div class="target" onclick="moverCuadro()"></div>
         </div>
+        <p>Puntos: <span id="score">0</span></p>
     </div>
-    
+
     <script>
-        function moverBoton() {
-            let btn = document.querySelector('.button');
-            let x = Math.random() * (window.innerWidth - 100);
+        let score = 0;
+
+        function moverCuadro() {
+            let cuadro = document.querySelector('.target');
+            let x = Math.random() * (window.innerWidth - 50);
             let y = Math.random() * (window.innerHeight - 50);
-            btn.style.left = `${x}px`;
-            btn.style.top = `${y}px`;
+            cuadro.style.left = `${x}px`;
+            cuadro.style.top = `${y}px`;
+            score++;
+            document.getElementById('score').innerText = score;
         }
     </script>
 </body>
 </html>
+
 
