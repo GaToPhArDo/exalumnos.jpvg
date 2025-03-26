@@ -50,9 +50,32 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* Estilo reducido para el texto de "Desarrollado por..." */
 .footer {
-    font-size: 18px;
+    font-size: 12px;
     font-weight: bold;
     color: #ffcc00;
-    margin-top: 20px;
+    margin-top: 10px;
+}
+
+/* Efecto máquina de escribir para "Feliz Cumpleaños Elsi" */
+.cumple {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffcc00;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid white;
+    width: 0;
+    animation: escribir 3s steps(30, end) forwards;
+}
+
+/* Animación de escritura */
+@keyframes escribir {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
