@@ -10,31 +10,44 @@
     <div class="container">
         <h1>🚧 Página en Construcción 🚧</h1>
         <p>Estamos trabajando para traerte algo increíble. ¡Vuelve pronto!</p>
-        <p>Mientras tanto, puedes distraerte con este pequeño juego:</p>
+        <p>Mientras tanto, ¡diviértete con este desafío de clics! ⏳</p>
     </div>
+
     <div class="game-container">
-        <h2>Haz clic en el cuadro para ganar puntos</h2>
-        <div class="game-area">
-            <div class="target" onclick="moverCuadro()"></div>
-        </div>
+        <h2>💥 ¡Haz clic lo más rápido que puedas en 10 segundos! 💥</h2>
+        <button id="clickButton">Haz clic aquí</button>
         <p>Puntos: <span id="score">0</span></p>
+        <p id="timer">Tiempo restante: 10s</p>
     </div>
 
     <script>
         let score = 0;
+        let timeLeft = 10;
+        let gameActive = false;
+        const button = document.getElementById("clickButton");
+        const scoreDisplay = document.getElementById("score");
+        const timerDisplay = document.getElementById("timer");
 
-        function moverCuadro() {
-            let cuadro = document.querySelector('.target');
-            let x = Math.random() * (window.innerWidth - 50);
-            let y = Math.random() * (window.innerHeight - 50);
-            cuadro.style.left = `${x}px`;
-            cuadro.style.top = `${y}px`;
+        button.addEventListener("click", () => {
+            if (!gameActive) {
+                gameActive = true;
+                startGame();
+            }
             score++;
-            document.getElementById('score').innerText = score;
+            scoreDisplay.textContent = score;
+        });
+
+        function startGame() {
+            const timer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = `Tiempo restante: ${timeLeft}s`;
+                if (timeLeft === 0) {
+                    clearInterval(timer);
+                    button.disabled = true;
+                    timerDisplay.textContent = "⏳ ¡Tiempo terminado!";
+                }
+            }, 1000);
         }
     </script>
 </body>
 </html>
-
-
-
