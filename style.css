@@ -45,13 +45,14 @@ button:hover {
     background-color: #ffdd55;
 }
 
-.texto-escribir {
+button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.footer {
     font-size: 18px;
     font-weight: bold;
     color: #ffcc00;
-    white-space: nowrap;
-    border-right: 3px solid #ffcc00;
-    overflow: hidden;
-    width: 100%;
-    display: inline-block;
+    margin-top: 20px;
 }
