@@ -8,65 +8,47 @@
 </head>
 <body>
     <div class="container">
-        <h1>🚧 Página en Construcción 🚧</h1>
-        <p>Estamos trabajando para traerte algo increíble. ¡Vuelve pronto!</p>
-        <p>Mientras tanto, ¡diviértete con este desafío de clics! ⏳</p>
+        <h1>Página en Construcción</h1>
+        <p>Estamos trabajando en el sitio. ¡Vuelve pronto!</p>
+        <p>Mientras tanto, puedes distraerte con este pequeño juego:</p>
     </div>
 
     <div class="game-container">
-        <h2>💥 ¡Haz clic lo más rápido que puedas en 10 segundos! 💥</h2>
-        <button id="clickButton">Haz clic aquí</button>
-        <p>Puntos: <span id="score">0</span></p>
-        <p id="timer">Tiempo restante: 10s</p>
-        <button id="resetButton">Reiniciar</button>
+        <h2>Haz clic para sumar puntos</h2>
+        <p>Puntos: <span id="contador">0</span></p>
+        <button id="botonJuego">Haz clic aquí</button>
+        <button id="reiniciar">Reiniciar</button>
     </div>
 
-    <marquee class="marquesina">🎉 Desarrollado por Marcial MV - Promo 92 🎉</marquee>
+    <p class="texto-escribir" id="textoAnimado"></p>
 
     <script>
-        let score = 0;
-        let timeLeft = 10;
-        let gameActive = false;
-        let timer;
-        const button = document.getElementById("clickButton");
-        const resetButton = document.getElementById("resetButton");
-        const scoreDisplay = document.getElementById("score");
-        const timerDisplay = document.getElementById("timer");
+        let contador = 0;
+        const contadorElemento = document.getElementById("contador");
+        const botonJuego = document.getElementById("botonJuego");
+        const botonReiniciar = document.getElementById("reiniciar");
 
-        button.addEventListener("click", () => {
-            if (!gameActive) {
-                gameActive = true;
-                startGame();
+        botonJuego.addEventListener("click", () => {
+            contador++;
+            contadorElemento.textContent = contador;
+        });
+
+        botonReiniciar.addEventListener("click", () => {
+            contador = 0;
+            contadorElemento.textContent = contador;
+        });
+
+        // Efecto máquina de escribir
+        const texto = "🎉 Desarrollado por Marcial MV - Promo 92 🎉";
+        let i = 0;
+        function escribirTexto() {
+            if (i < texto.length) {
+                document.getElementById("textoAnimado").innerHTML += texto.charAt(i);
+                i++;
+                setTimeout(escribirTexto, 100);
             }
-            score++;
-            scoreDisplay.textContent = score;
-        });
-
-        resetButton.addEventListener("click", () => {
-            resetGame();
-        });
-
-        function startGame() {
-            timer = setInterval(() => {
-                timeLeft--;
-                timerDisplay.textContent = `Tiempo restante: ${timeLeft}s`;
-                if (timeLeft === 0) {
-                    clearInterval(timer);
-                    button.disabled = true;
-                    timerDisplay.textContent = "⏳ ¡Tiempo terminado!";
-                }
-            }, 1000);
         }
-
-        function resetGame() {
-            clearInterval(timer);
-            score = 0;
-            timeLeft = 10;
-            gameActive = false;
-            button.disabled = false;
-            scoreDisplay.textContent = score;
-            timerDisplay.textContent = "Tiempo restante: 10s";
-        }
+        escribirTexto();
     </script>
 </body>
 </html>
