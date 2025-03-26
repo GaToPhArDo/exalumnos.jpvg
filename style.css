@@ -40,6 +40,7 @@ button {
     cursor: pointer;
     border-radius: 10px;
     transition: 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
@@ -54,4 +55,14 @@ p {
     font-size: 20px;
     font-weight: bold;
     color: #ffcc00; /* Amarillo */
+}
+
+.marquesina {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffcc00; /* Amarillo */
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
 }
