@@ -21,19 +21,40 @@
         <button id="reiniciar">Reiniciar</button>
     </div>
 
-    <p class="footer">🎉 << Desarrollado por Marcial MV (Marchello) >> 🎉</p>
+    <p class="footer">🎉 Desarrollado por Marcial MV - Promo 92 🎉</p>
+    
+    <p class="cumple">🌸🌼🌺 ¡Feliz Cumpleaños Elsi! 🌸🌼🌺</p>
 
     <script>
         let contador = 0;
         let tiempo = 10; // Duración del juego en segundos
-        let juegoActivo = true;
+        let juegoActivo = false; // Ahora inicia solo cuando el usuario hace su primer clic
+        let intervalo;
         const contadorElemento = document.getElementById("contador");
         const tiempoElemento = document.getElementById("tiempo");
         const botonJuego = document.getElementById("botonJuego");
         const botonReiniciar = document.getElementById("reiniciar");
 
+        // Función para iniciar la cuenta regresiva
+        function iniciarCuentaRegresiva() {
+            if (!juegoActivo) {
+                juegoActivo = true;
+                intervalo = setInterval(() => {
+                    if (tiempo > 0) {
+                        tiempo--;
+                        tiempoElemento.textContent = tiempo;
+                    } else {
+                        clearInterval(intervalo);
+                        juegoActivo = false;
+                        botonJuego.disabled = true;
+                    }
+                }, 1000);
+            }
+        }
+
         // Función para contar los clics
         botonJuego.addEventListener("click", () => {
+            if (!juegoActivo) iniciarCuentaRegresiva();
             if (juegoActivo) {
                 contador++;
                 contadorElemento.textContent = contador;
@@ -42,31 +63,14 @@
 
         // Función para reiniciar el juego
         botonReiniciar.addEventListener("click", () => {
+            clearInterval(intervalo);
             contador = 0;
             tiempo = 10;
-            juegoActivo = true;
+            juegoActivo = false;
             contadorElemento.textContent = contador;
             tiempoElemento.textContent = tiempo;
             botonJuego.disabled = false;
-            iniciarCuentaRegresiva();
         });
-
-        // Cuenta regresiva
-        function iniciarCuentaRegresiva() {
-            const intervalo = setInterval(() => {
-                if (tiempo > 0) {
-                    tiempo--;
-                    tiempoElemento.textContent = tiempo;
-                } else {
-                    clearInterval(intervalo);
-                    juegoActivo = false;
-                    botonJuego.disabled = true;
-                }
-            }, 1000);
-        }
-
-        // Iniciar la cuenta regresiva al cargar la página
-        iniciarCuentaRegresiva();
     </script>
 </body>
 </html>
